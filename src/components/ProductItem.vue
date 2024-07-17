@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import icons from "../constants/icons";
+import { useProductsStore } from "@/stores/Products";
+import AddToCart from "./AddToCartButton.vue";
+import RoundedButton from "./RoundedButton.vue";
+
 interface Props {
   item: {
     image: {
@@ -16,6 +21,11 @@ interface Props {
 const props = defineProps<Props>();
 
 const { name, category, price, image } = props.item;
+const { increment, productList, decrement, addToCart } = useProductsStore();
+
+const productInCart = computed(() => {
+  return productList.find((item) => item.name == name);
+});
 </script>
 
 <template>
@@ -26,15 +36,45 @@ const { name, category, price, image } = props.item;
         <source media="(mix-width: 600px and max-width: 1200)" :srcset="image.tablet" />
         <source media="(min-width: 1200px)" :srcset="image.desktop" />
 
-        <img :src="image.mobile" :alt="'Image of ' + name" class="rounded-xl shadow-lg" />
+        <img
+          :src="image.mobile"
+          :alt="'Image of ' + name"
+          class="rounded-xl border-2"
+          :class="{
+            ' border-csm-red': productInCart,
+            'border-transparent': !productInCart,
+          }"
+        />
 
         <div class="relative bottom-6 grid place-items-center">
-          <button
-            class="flex gap-1 bg-csm-rose-50 rounded-full p-3 border border-csm-rose-400 items-center"
+          <div
+            v-if="productInCart && productInCart.quantity > 0"
+            class="bg-csm-red flex justify-between items-center w-3/5 p-3 rounded-full"
           >
-            <img :src="icons.shoppingCart" alt="Shopping Cart Icon" />
-            <span class="font-semibold">Add To Cart</span>
-          </button>
+            <RoundedButton
+              :icon="icons.decrement"
+              @click="decrement(name)"
+              title="Decrement Item Count"
+            />
+            <span class="text-csm-rose-50"> {{ productInCart.quantity }}</span>
+            <RoundedButton
+              :icon="icons.increment"
+              @click="increment(name)"
+              title="Decrement Item Count"
+            />
+          </div>
+
+          <AddToCart
+            v-else
+            @click="
+              addToCart({
+                name: name,
+                price: price,
+                quantity: 1,
+                thumbnail: image.thumbnail,
+              })
+            "
+          />
         </div>
       </picture>
     </div>
