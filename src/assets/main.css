@@ -12,7 +12,4 @@
   body {
     @apply bg-csm-rose-100 mb-20;
   }
-  svg {
-    color: currentColor;
-  }
 }

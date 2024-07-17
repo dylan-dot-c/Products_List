@@ -1,10 +1,17 @@
+import shoppingCartIcon from '../assets/images/icon-add-to-cart.svg'
+import carbonNeutralIcon from '../assets/images/icon-carbon-neutral.svg'
+import decrementIcon from '../assets/images/icon-decrement-quantity.svg'
+import incrementIcon from '../assets/images/icon-increment-quantity.svg'
+import orderConfirmedIcon from '../assets/images/icon-order-confirmed.svg'
+import removeItemIcon from '../assets/images/icon-remove-item.svg'
+
 const icons = {
-  shoppingCart: 'src/assets/images/icon-add-to-cart.svg',
-  carbonNeutral: 'src/assets/images/icon-carbon-neutral.svg',
-  decrement: 'src/assets/images/icon-decrement-quantity.svg',
-  increment: 'src/assets/images/icon-increment-quantity.svg',
-  orderConfirmed: 'src/assets/images/icon-order-confirmed.svg',
-  removeItem: 'src/assets/images/icon-remove-item.svg'
+  shoppingCart: shoppingCartIcon,
+  carbonNeutral: carbonNeutralIcon,
+  decrement: decrementIcon,
+  increment: incrementIcon,
+  orderConfirmed: orderConfirmedIcon,
+  removeItem: removeItemIcon
 }
 
 export default icons
