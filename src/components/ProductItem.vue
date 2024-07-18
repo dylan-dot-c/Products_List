@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import icons from "../constants/icons";
-import { useProductsStore } from "@/stores/Products";
-import AddToCart from "./AddToCartButton.vue";
-import RoundedButton from "./RoundedButton.vue";
+import { computed } from 'vue'
+import icons from '../constants/icons'
+import { useProductsStore } from '@/stores/Products'
+import AddToCart from './AddToCartButton.vue'
+import RoundedButton from './RoundedButton.vue'
 
 interface Props {
   item: {
     image: {
-      mobile: string;
-      thumbnail: string;
-      tablet: string;
-      desktop: string;
-    };
-    name: string;
-    category: string;
-    price: number;
-  };
+      mobile: string
+      thumbnail: string
+      tablet: string
+      desktop: string
+    }
+    name: string
+    category: string
+    price: number
+  }
 }
-const props = defineProps<Props>();
+const props = defineProps<Props>()
 
-const { name, category, price, image } = props.item;
-const { increment, productList, decrement, addToCart } = useProductsStore();
-
+const { name, category, price, image } = props.item
+const { increment, state, decrement, addToCart } = useProductsStore()
+const { productList } = state
 const productInCart = computed(() => {
-  return productList.find((item) => item.name == name);
-});
+  return productList.find((item) => item.name == name)
+})
 </script>
 
 <template>
@@ -37,12 +37,13 @@ const productInCart = computed(() => {
         <source media="(min-width: 1200px)" :srcset="image.desktop" />
 
         <img
+          loading="lazy"
           :src="image.mobile"
           :alt="'Image of ' + name"
           class="rounded-xl border-2"
           :class="{
             ' border-csm-red': productInCart,
-            'border-transparent': !productInCart,
+            'border-transparent': !productInCart
           }"
         />
 
@@ -71,14 +72,14 @@ const productInCart = computed(() => {
                 name: name,
                 price: price,
                 quantity: 1,
-                thumbnail: image.thumbnail,
+                thumbnail: image.thumbnail
               })
             "
           />
         </div>
       </picture>
     </div>
-    <p class="t text-csm-rose-300 text-sm">{{ category }}</p>
+    <p class="text-csm-rose-300 text-sm">{{ category }}</p>
     <p class="text-csm-rose-900 font-semibold">{{ name }}</p>
     <p class="text-csm-red font-semibold">${{ Number(price).toFixed(2) }}</p>
   </div>

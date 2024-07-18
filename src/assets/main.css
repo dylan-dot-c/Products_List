@@ -12,4 +12,12 @@
   body {
     @apply bg-csm-rose-100 mb-20;
   }
+
+  .btn {
+    @apply bg-csm-red rounded-full w-full p-4 transition text-csm-rose-50;
+  }
+
+  .btn:hover {
+    @apply opacity-80;
+  }
 }

@@ -4,7 +4,8 @@ import { useProductsStore } from "@/stores/Products";
 import { computed } from "vue";
 import CartList from "./CartList.vue";
 
-const { productList } = useProductsStore();
+const { state } = useProductsStore();
+const { productList } = state;
 
 const totalItems = computed(() => {
   let sum = 0;

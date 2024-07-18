@@ -3,12 +3,12 @@ import icons from "../constants/icons";
 import { computed } from "vue";
 import { useProductsStore } from "@/stores/Products";
 import RoundedButton from "./RoundedButton.vue";
+import type { ProductItem } from "@/stores/Products";
 
-const { removeFromCart, productList } = useProductsStore();
-const props = defineProps<{ index: number }>();
+const { removeFromCart } = useProductsStore();
+const props = defineProps<{ item: ProductItem }>();
 
-const { index } = props;
-const product = computed(() => productList[index]);
+const product = computed(() => props.item);
 const total = computed(() => {
   const value = product.value.quantity * product.value.price;
   return value;
