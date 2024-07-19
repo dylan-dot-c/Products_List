@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import ModalContainer from './ModalContainer.vue'
-import OrderConfirmed from './OrderConfirmed.vue'
-import CartListItem from './CartListItem.vue'
-import { useProductsStore } from '../stores/Products'
-import { computed } from 'vue'
-import icons from '@/constants/icons'
+import ModalContainer from "./ModalContainer.vue";
+import OrderConfirmed from "./OrderConfirmed.vue";
+import CartListItem from "./CartListItem.vue";
+import { useProductsStore } from "../stores/Products";
+import { computed } from "vue";
+import icons from "@/constants/icons";
 
-const { state, toggleModal } = useProductsStore()
-const { productList } = state
+const { state, toggleModal } = useProductsStore();
+const { productList } = state;
 
 const cartTotal = computed(() => {
-  let total = 0
+  let total = 0;
   productList.forEach((product) => {
-    const cost = product.price * product.quantity
-    total += cost
-  })
-  return total
-})
+    const cost = product.price * product.quantity;
+    total += cost;
+  });
+  return total;
+});
 </script>
 
 <template>
@@ -28,7 +28,9 @@ const cartTotal = computed(() => {
   <div class="space-y-5 mt-3">
     <div class="flex justify-between items-center">
       <p>Order Total</p>
-      <span class="text-3xl text-csm-rose-900 font-bold">${{ cartTotal.toFixed(2) }}</span>
+      <span class="text-3xl text-csm-rose-900 font-bold"
+        >${{ cartTotal.toFixed(2) }}</span
+      >
     </div>
 
     <div class="bg-csm-rose-100 rounded-lg py-4 flex justify-center gap-2">

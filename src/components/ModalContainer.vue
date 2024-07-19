@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { useProductsStore } from '../stores/Products'
+import { useProductsStore } from "../stores/Products";
 
-const { showModal } = useProductsStore()
+const { showModal } = useProductsStore();
 </script>
 
 <template>
-  <div class="modal" v-if="showModal.show">
-    <div
-      class="bg-white max-w-[600px] w-[600px] md:p-8 p-4 md:rounded-2xl space-y-4 rounded-t-2xl md:h-auto"
-    >
-      <slot></slot>
+  <Transition>
+    <div class="modal" v-if="showModal.show">
+      <div
+        class="bg-white max-w-[600px] w-[600px] md:p-8 p-4 md:rounded-2xl space-y-4 rounded-t-2xl md:h-auto"
+      >
+        <slot></slot>
+      </div>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <style scoped>
@@ -32,5 +34,15 @@ const { showModal } = useProductsStore()
   .modal {
     align-items: end;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
