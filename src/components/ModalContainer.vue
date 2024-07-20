@@ -28,11 +28,32 @@ const { showModal } = useProductsStore();
   align-items: center;
   top: 0;
   left: 0;
+  animation: fade-in 0.2s ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    scale: 1.5;
+  }
+  to {
+    opacity: 100;
+    scale: 1;
+  }
 }
 
 @media screen and (max-width: 700px) {
   .modal {
     align-items: end;
+  }
+
+  @keyframes fade-in {
+    from {
+      transform: translate(0, 100%);
+    }
+    to {
+      transform: translate(0, 0);
+    }
   }
 }
 

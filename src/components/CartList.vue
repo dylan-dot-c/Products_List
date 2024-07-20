@@ -4,11 +4,12 @@ import OrderConfirmed from "./OrderConfirmed.vue";
 import CartListItem from "./CartListItem.vue";
 import { useProductsStore } from "../stores/Products";
 import { computed } from "vue";
-import icons from "@/constants/icons";
+import CarbonNeutral from "./CarbonNeutral.vue";
 
 const { state, toggleModal } = useProductsStore();
 const { productList } = state;
 
+// calculate the total of the cart
 const cartTotal = computed(() => {
   let total = 0;
   productList.forEach((product) => {
@@ -33,13 +34,11 @@ const cartTotal = computed(() => {
       >
     </div>
 
-    <div class="bg-csm-rose-100 rounded-lg py-4 flex justify-center gap-2">
-      <img :src="icons.carbonNeutral" alt="Carbon Neutral Icon with Tree" />
-      <p class="text-sm">This is a <b>carbon-neutral</b> delivery</p>
-    </div>
+    <CarbonNeutral />
 
     <button @click="toggleModal" class="btn">Confirm Order</button>
 
+    <!-- used to place the modal content in the body instead of having it deeply nested in the DOM -->
     <Teleport to="body">
       <ModalContainer>
         <OrderConfirmed :cartTotal />

@@ -5,7 +5,7 @@ const { shoppingCart } = icons;
 
 <template>
   <button
-    class="flex gap-1 bg-csm-rose-50 rounded-full p-3 border border-csm-rose-400 items-center w-3/5 justify-center hover:border-csm-red transition"
+    class="flex gap-1 bg-csm-rose-50 rounded-full p-3 border border-csm-rose-400 items-center w-44 justify-center hover:border-csm-red transition"
     title="Add To Cart"
   >
     <img :src="shoppingCart" alt="Shopping Cart Icon" />

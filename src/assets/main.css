@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-csm-rose-100 mb-20;
+    @apply bg-csm-rose-50 mb-20;
   }
 
   .btn {
@@ -19,5 +19,9 @@
 
   .btn:hover {
     @apply opacity-80;
+  }
+
+  button:focus {
+    @apply outline-2 outline-csm-green;
   }
 }

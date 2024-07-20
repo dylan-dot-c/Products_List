@@ -17,8 +17,8 @@ const totalItems = computed(() => {
 </script>
 
 <template>
-  <div class="p-8 rounded-xl bg-csm-rose-50 sticky top-5">
-    <h2 class="text-xl text-csm-red font-bold mb-4">Your Cart({{ totalItems }})</h2>
+  <div class="p-8 rounded-xl bg-white sticky top-5 md:mr-8 max-w-[400px]">
+    <h2 class="text-2xl text-csm-red font-bold mb-4">Your Cart({{ totalItems }})</h2>
 
     <EmptyCart v-if="productList.length == 0" />
 
