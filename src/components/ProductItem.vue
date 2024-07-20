@@ -29,7 +29,7 @@ const productInCart = computed(() => {
 </script>
 
 <template>
-  <div class="relative mb-16">
+  <div class="">
     <div>
       <picture>
         <source media="(max-width: 600px)" :srcset="image.mobile" />
@@ -48,57 +48,40 @@ const productInCart = computed(() => {
         />
 
         <div class="relative bottom-6 grid place-items-center">
-          <Transition>
-            <div
-              v-if="productInCart && productInCart.quantity > 0"
-              class="bg-csm-red flex justify-between items-center w-3/5 p-3 rounded-full"
-            >
-              <RoundedButton
-                :icon="icons.decrement"
-                @click="decrement(name)"
-                title="Decrement Item Count"
-              />
-              <span class="text-csm-rose-50"> {{ productInCart.quantity }}</span>
-              <RoundedButton
-                :icon="icons.increment"
-                @click="increment(name)"
-                title="Decrement Item Count"
-              />
-            </div>
-            <AddToCart
-              v-else
-              @click="
-                addToCart({
-                  name: name,
-                  price: price,
-                  quantity: 1,
-                  thumbnail: image.thumbnail,
-                })
-              "
+          <div
+            v-if="productInCart && productInCart.quantity > 0"
+            class="bg-csm-red flex justify-between items-center w-3/5 p-3 rounded-full"
+          >
+            <RoundedButton
+              :icon="icons.decrement"
+              @click="decrement(name)"
+              title="Decrement Item Count"
             />
-          </Transition>
+            <span class="text-csm-rose-50 over"> {{ productInCart.quantity }}</span>
+            <RoundedButton
+              :icon="icons.increment"
+              @click="increment(name)"
+              title="Decrement Item Count"
+            />
+          </div>
+          <AddToCart
+            v-else
+            @click="
+              addToCart({
+                name: name,
+                price: price,
+                quantity: 1,
+                thumbnail: image.thumbnail,
+              })
+            "
+          />
         </div>
       </picture>
     </div>
-    <div class="absolute -bottom-16">
+    <div>
       <p class="text-csm-rose-300 text-sm">{{ category }}</p>
       <p class="text-csm-rose-900 font-semibold">{{ name }}</p>
       <p class="text-csm-red font-semibold">${{ Number(price).toFixed(2) }}</p>
     </div>
   </div>
 </template>
-
-<style scoped>
-.v-enter-active,
-.v-leave-active {
-  position: absolute;
-  top: 0;
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  position: absolute;
-  opacity: 0;
-}
-</style>

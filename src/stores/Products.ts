@@ -18,7 +18,10 @@ export const useProductsStore = defineStore('products', () => {
   })
 
   const showModal = reactive({ show: false })
-  const toggleModal = () => (showModal.show = !showModal.show)
+  const toggleModal = () => {
+    showModal.show = !showModal.show
+    document.documentElement.style.overflow = 'hidden'
+  }
 
   // helper function
   const findItemByName = (name: string) => {
@@ -68,6 +71,7 @@ export const useProductsStore = defineStore('products', () => {
   const resetCart = () => {
     showModal.show = false
     state.productList.length = 0
+    document.documentElement.style.overflow = 'visible'
   }
 
   return {
